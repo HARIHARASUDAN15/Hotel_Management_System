@@ -1,0 +1,177 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Body ===== */
+body {
+    background: url('../assets/images/db_bg2.png') no-repeat center center/cover;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.navbar .logo a {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffd369;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ffd369;
+}
+
+/* ===== Main Container ===== */
+.container {
+    max-width: 1200px;
+    margin: 80px auto 50px auto;
+    padding: 0 20px;
+}
+
+/* ===== Welcome Heading ===== */
+.container h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #ffd369;
+    margin-bottom: 40px;
+    text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+}
+
+/* ===== Cards ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+
+.card i {
+    font-size: 36px;
+    color: #ffd369;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.card a {
+    text-decoration: none;
+    color: #fff;
+    background: #ffd369;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.card a:hover {
+    background: #e6c24c;
+}
+
+/* ===== Footer ===== */
+footer {
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== LOGOUT BUTTON ===== */
+.navbar ul.nav-menu li a.logout-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.navbar ul.nav-menu li a.logout-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    color: #fff;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .container h1 {
+        font-size: 28px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        padding: 12px 20px;
+        gap: 10px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}

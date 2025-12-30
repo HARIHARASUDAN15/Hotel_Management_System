@@ -1,0 +1,179 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Body & Background ===== */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    padding: 12px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Hotel Logo */
+.navbar .logo a {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffd369;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    margin-left: 10px;
+}
+
+/* Navbar Links */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background: rgba(255,255,255,0.2);
+    color: #ffd369;
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ===== About Section ===== */
+.about-section {
+    margin-top: 80px; /* enough space from navbar */
+    text-align: center;
+}
+
+.about-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #ffd369;
+    text-shadow: 1px 2px 5px rgba(0,0,0,0.4);
+}
+
+.about-section p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== Features Grid ===== */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.feature-card i {
+    font-size: 36px;
+    color: #ffd369;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #e0e0e0;
+}
+
+/* ===== Footer ===== */
+footer {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+    margin-top: 60px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .features {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .about-section h1 {
+        font-size: 28px;
+    }
+
+    .about-section p {
+        font-size: 16px;
+    }
+
+    .feature-card h3 {
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        padding: 12px 20px;
+        gap: 10px;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}

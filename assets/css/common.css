@@ -1,0 +1,254 @@
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 10;
+    background: linear-gradient(
+    rgba(74, 56, 35, 0.92),   /* dark brown */
+    rgba(74, 56, 35, 0.92)
+);
+
+}
+
+.nav-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo a {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: #f1c40f;
+}
+
+/* Nav links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* underline hover animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #f1c40f;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f1c40f;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    height: 100vh;
+    background: url("../images/img1.jpg") no-repeat center/cover;
+    position: relative;
+}
+
+/* Dark overlay + center content */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero content */
+.hero-content {
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Heading */
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: wheat;
+}
+
+/* Subtext */
+.hero-subtext {
+    font-size: 20px;
+    color: wheat;
+    letter-spacing: 1px;
+    margin-top: 12px;      /* space below heading */
+    margin-bottom: 30px;   /* space before buttons */
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Buttons container */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Button styles */
+.btn {
+    background: #f39c12;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background: #d68910;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+
+.btn-outline:hover {
+    background: #ffffff;
+    color: #2c3e50;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+    background: #f39c12;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background: #d68910;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #ffffff;
+}
+
+.btn-outline:hover {
+    background: #ffffff;
+    color: #2c3e50;
+}
+
+/*FOOTER*/
+footer {
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    padding: 40px 20px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-size: 26px;
+    color: #ffd369;
+    margin-bottom: 15px;
+}
+
+.footer-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+
+.footer-social {
+    margin: 20px 0;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #ffd369;
+}
+
+.footer-copy {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .footer-content h3 {
+        font-size: 22px;
+    }
+    .footer-content p {
+        font-size: 14px;
+    }
+    .footer-social a {
+        font-size: 16px;
+        margin: 0 8px;
+    }
+}
+

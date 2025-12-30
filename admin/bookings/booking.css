@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background: #2c3e50;
+    color: white;
+}
+
+.btn {
+    padding: 6px 10px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background: #217dbb;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    border-radius: 6px;
+}
+
+select, button {
+    padding: 8px;
+    margin-top: 10px;
+}
+
+button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e8449;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+}
