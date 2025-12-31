@@ -5,62 +5,76 @@ $msg = "";
 
 if (isset($_POST['register'])) {
 
-    $name   = $_POST['name'];
-    $email  = $_POST['email'];
-    $age    = $_POST['age'];
-    $mobile = $_POST['mobile'];
-    $ptype  = $_POST['proof_type'];
-    $pno    = $_POST['proof_number'];
+    $name   = mysqli_real_escape_string($conn, $_POST['name']);
+    $email  = mysqli_real_escape_string($conn, $_POST['email']);
+    $age    = mysqli_real_escape_string($conn, $_POST['age']);
+    $mobile = mysqli_real_escape_string($conn, $_POST['mobile']);
+    $ptype  = mysqli_real_escape_string($conn, $_POST['proof_type']);
+    $pno    = mysqli_real_escape_string($conn, $_POST['proof_number']);
     $pass   = $_POST['password'];
     $cpass  = $_POST['confirm_password'];
+
+    // default values
+    $role   = 'user';
+    $status = 'active';
+    $created_at = date('Y-m-d H:i:s');
+    $profile_image = NULL;
+    $proof_doc = NULL;
 
     if ($pass != $cpass) {
         $msg = "Passwords do not match";
     } else {
 
-        $img  = $_FILES['proof_image']['name'];
-        $size = $_FILES['proof_image']['size'];
-        $tmp  = $_FILES['proof_image']['tmp_name'];
-
-        if ($size > 2097152) {
-            $msg = "Image must be less than 2MB";
+        if (!isset($_FILES['proof_image']) || $_FILES['proof_image']['error'] != 0) {
+            $msg = "Proof image required";
         } else {
 
-            $folder = "../assets/images/proofs/";
-            if (!is_dir($folder)) {
-                mkdir($folder, 0777, true);
-            }
+            $img  = $_FILES['proof_image']['name'];
+            $size = $_FILES['proof_image']['size'];
+            $tmp  = $_FILES['proof_image']['tmp_name'];
 
-            $img_name = time() . "_" . $img;
-            move_uploaded_file($tmp, $folder . $img_name);
-
-            $password = password_hash($pass, PASSWORD_DEFAULT);
-
-            $check = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
-            if (mysqli_num_rows($check) > 0) {
-                $msg = "Email already registered";
+            if ($size > 2097152) {
+                $msg = "Image must be less than 2MB";
             } else {
 
-                $query = "INSERT INTO users
-                (name,email,age,mobile,proof_type,proof_number,proof_image,password)
-                VALUES
-                ('$name','$email','$age','$mobile','$ptype','$pno','$img_name','$password')";
+                $folder = "../assets/images/proofs/";
+                if (!is_dir($folder)) {
+                    mkdir($folder, 0777, true);
+                }
 
-                if (mysqli_query($conn, $query)) {
-                    $msg = "Registration successful. Please login.";
+                $img_name = time() . "_" . basename($img);
+                move_uploaded_file($tmp, $folder . $img_name);
+
+                $password = password_hash($pass, PASSWORD_DEFAULT);
+
+                // check email
+                $check = mysqli_query($conn, "SELECT id FROM users WHERE email='$email'");
+                if (mysqli_num_rows($check) > 0) {
+                    $msg = "Email already registered";
                 } else {
-                    $msg = "Registration failed";
+
+                    $query = "INSERT INTO users
+                    (name, email, age, mobile, proof_type, proof_number, proof_image,
+                     password, role, status, created_at, profile_image, proof_doc)
+                    VALUES
+                    ('$name', '$email', '$age', '$mobile', '$ptype', '$pno', '$img_name',
+                     '$password', '$role', '$status', '$created_at', '$profile_image', '$proof_doc')";
+
+                    if (mysqli_query($conn, $query)) {
+                        $msg = "Registration successful. Please login.";
+                    } else {
+                        $msg = "Registration failed";
+                    }
                 }
             }
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register | SDET Hotel</title>
+    <title>User Registration</title>
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
@@ -79,7 +93,7 @@ if (isset($_POST['register'])) {
         <input type="number" name="age" placeholder="Age" required>
         <input type="text" name="mobile" placeholder="Mobile Number" required>
 
-        <select name="proof_type" id="proofType" onchange="showProof()" required>
+        <select name="proof_type" onchange="showProof()" required>
             <option value="">Select ID Proof</option>
             <option value="Aadhar">Aadhar</option>
             <option value="Voter">Voter ID</option>
@@ -97,10 +111,7 @@ if (isset($_POST['register'])) {
         <button type="submit" name="register">Register</button>
     </form>
 
-    <p>
-        Already have an account?
-        <a href="login.php">Login</a>
-    </p>
+    <p>Already have an account? <a href="login.php">Login</a></p>
 </div>
 
 <script>
