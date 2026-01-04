@@ -11,26 +11,26 @@ if (isset($_POST['login'])) {
     $password = trim($_POST['password']);
 
     // Basic validation
-    if ($email == "" || $password == "") {
+    if ($email === "" || $password === "") {
         $msg = "Please fill all fields";
         $msg_type = "error";
     } else {
 
-        // Prepared statement
+        // Prepared statement for security
         $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE email = ?");
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
-        if (mysqli_num_rows($result) == 1) {
+        if ($result && mysqli_num_rows($result) === 1) {
 
             $user = mysqli_fetch_assoc($result);
 
-            // Password verify
+            // Password verify with hash
             if (password_verify($password, $user['password'])) {
 
-                // Status check
-                if ($user['status'] != 1) {
+                // Check status
+                if ($user['status'] !== 'active') {
                     $msg = "Account inactive. Contact admin.";
                     $msg_type = "error";
                 } else {
@@ -38,27 +38,26 @@ if (isset($_POST['login'])) {
                     // Set session
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['name']    = $user['name'];
-                    $_SESSION['role']    = strtolower($user['role']); // admin | worker | user
+                    $_SESSION['role']    = strtolower($user['role']); // admin | user | worker
 
-                    // Role based redirect
+                    // Role-based redirect
                     switch ($_SESSION['role']) {
-
                         case 'admin':
                             header("Location: ../admin/dashboard.php");
+                            exit;
+
+                        case 'user':
+                            header("Location: ../user/home.php");
                             exit;
 
                         case 'worker':
                             header("Location: ../worker/dashboard.php");
                             exit;
 
-                        case 'user': // ✅ MOST IMPORTANT FIX
-                            header("Location: ../user/home.php");
-                            exit;
-
                         default:
+                            session_destroy();
                             $msg = "Invalid role. Contact admin.";
                             $msg_type = "error";
-                            session_destroy();
                     }
                 }
 
@@ -71,9 +70,12 @@ if (isset($_POST['login'])) {
             $msg = "User not found. Please register.";
             $msg_type = "error";
         }
+
+        mysqli_stmt_close($stmt);
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,7 +86,7 @@ if (isset($_POST['login'])) {
 
 <?php if ($msg != ""): ?>
 <div class="notification <?php echo $msg_type; ?>">
-    <?php echo $msg; ?>
+    <?php echo htmlspecialchars($msg); ?>
 </div>
 <?php endif; ?>
 
@@ -92,8 +94,8 @@ if (isset($_POST['login'])) {
     <h2>Login</h2>
 
     <form method="post">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
         <button type="submit" name="login">Login</button>
     </form>
 
@@ -108,7 +110,6 @@ if (isset($_POST['login'])) {
 </div>
 
 <script>
-// Auto-hide notification after 5 seconds
 setTimeout(() => {
     const note = document.querySelector('.notification');
     if (note) note.style.display = 'none';

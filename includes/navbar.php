@@ -14,7 +14,9 @@
             <li><a href="/hotel_management_system/floors">Reviews</a></li>
             <li><a href="/hotel_management_system/user/rooms/rooms.php">Rooms</a></li>
             <?php if(isset($_SESSION['user_id'])): ?>
-                <li><a href="/hotel_management_system/auth/logout.php" class="logout">Logout</a></li>
+                <li>
+  <a href="/hotel_management_system/auth/logout.php" class="logout-btn">Logout</a>
+</li>
             <?php else: ?>
                 <li><a href="/hotel_management_system/auth/login.php">Login</a></li>
             <?php endif; ?>

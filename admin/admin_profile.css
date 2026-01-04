@@ -39,8 +39,8 @@ body {
 
 /* ===== SUCCESS / ERROR MESSAGES ===== */
 .success, .success-msg {
-    background: rgba(46, 204, 113, 0.25);
-    color: #2ecc71;
+    background: rgba(16, 227, 104, 0.25);
+    color: #0e2d1b;
     padding: 10px;
     border-radius: 6px;
     text-align: center;

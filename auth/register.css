@@ -116,17 +116,19 @@ body {
 
 /* ===== Notification ===== */
 .notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative; /* instead of fixed */
+    top: 0;             /* remove top positioning */
+    left: 0;            /* remove left positioning */
+    transform: none;    /* remove translate */
     padding: 12px 20px;
     border-radius: 6px;
     font-size: 14px;
     color: #fff;
-    z-index: 999;
-    animation: slideDown 0.6s ease;
+    margin-bottom: 15px; /* space between notification and form */
+    z-index: 1;
+    animation: none;      /* optional: remove slideDown */
 }
+
 
 /* Error */
 .notification.error {

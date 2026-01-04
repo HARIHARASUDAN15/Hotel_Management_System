@@ -1,0 +1,115 @@
+/* ===============================
+   Floor User Page – Card Layout
+   =============================== */
+
+/* FIX: Navbar keezha content maraiyama irukka */
+body {
+    margin: 0;
+    padding-top: 80px;   /* navbar height */
+    background-color: #f5f7fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Page container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Title */
+.container h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.sub-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+/* ===== GRID ALIGNMENT =====
+   1 row = 3 cards (NOT one by one)
+*/
+.floor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Floor card */
+.floor-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+
+    /* Equal height + alignment fix */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+/* Floor name */
+.floor-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Room count */
+.floor-card p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Button */
+.floor-card a {
+    align-self: center;
+    padding: 10px 22px;
+    background: linear-gradient(
+    rgba(74, 56, 35, 0.92),   /* dark brown */
+    rgba(74, 56, 35, 0.92)
+);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.floor-card a:hover {
+    background-color: #0056b3;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet – 2 cards per row */
+@media (max-width: 992px) {
+    .floor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile – 1 card per row */
+@media (max-width: 576px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .floor-grid {
+        grid-template-columns: 1fr;
+    }
+}

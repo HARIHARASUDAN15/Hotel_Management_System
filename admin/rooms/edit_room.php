@@ -7,7 +7,7 @@ if (!isset($_GET['id'])) {
 }
 
 $msg = "";
-$room_id = $_GET['id'];
+$room_id = (int)$_GET['id'];
 
 /* Fetch room */
 $stmt = $conn->prepare("SELECT * FROM rooms WHERE room_id=?");
@@ -23,23 +23,41 @@ if (!$room) {
 /* Fetch floors */
 $floors = $conn->query("SELECT * FROM floors");
 
-/* Update room */
+/* Update room (INCLUDING price_per_day) */
 if (isset($_POST['submit'])) {
-    $room_no = $_POST['room_no'];
-    $floor_id = $_POST['floor_id'];
-    $room_type = $_POST['room_type'];
-    $room_status = $_POST['room_status'];
 
-    $stmt = $conn->prepare(
-        "UPDATE rooms SET room_no=?, floor_id=?, room_type=?, room_status=? WHERE room_id=?"
-    );
-    $stmt->bind_param("sissi", $room_no, $floor_id, $room_type, $room_status, $room_id);
+    $room_no       = $_POST['room_no'];
+    $floor_id      = (int)$_POST['floor_id'];
+    $room_type     = $_POST['room_type'];
+    $room_status   = $_POST['room_status'];
+    $price_per_day = (float)$_POST['price_per_day'];
 
-    if ($stmt->execute()) {
-        header("Location: manage_rooms.php?success=Room updated successfully");
-        exit;
+    if ($price_per_day <= 0) {
+        $msg = "Price per day must be greater than 0";
     } else {
-        $msg = "Error updating room!";
+
+        $stmt = $conn->prepare(
+            "UPDATE rooms 
+             SET room_no=?, floor_id=?, room_type=?, room_status=?, price_per_day=? 
+             WHERE room_id=?"
+        );
+
+        $stmt->bind_param(
+            "sissdi",
+            $room_no,
+            $floor_id,
+            $room_type,
+            $room_status,
+            $price_per_day,
+            $room_id
+        );
+
+        if ($stmt->execute()) {
+            header("Location: manage_rooms.php?success=Room updated successfully");
+            exit;
+        } else {
+            $msg = "Error updating room!";
+        }
     }
 }
 ?>
@@ -49,12 +67,16 @@ if (isset($_POST['submit'])) {
 <head>
     <title>Edit Room</title>
     <link rel="stylesheet" href="../rooms/add_room.css">
+    <link rel="stylesheet" href="../rooms/manage_rooms.css">
+    
 </head>
 
 <body>
 
 <div class="container">
     <h2>Edit Room</h2>
+
+    
 
     <?php if ($msg != "") { ?>
         <p class="error-msg"><?php echo $msg; ?></p>
@@ -63,31 +85,38 @@ if (isset($_POST['submit'])) {
     <form method="post">
 
         <label>Room Number</label>
-        <input type="text" name="room_no" value="<?php echo $room['room_no']; ?>" required>
+        <input type="text" name="room_no" value="<?= htmlspecialchars($room['room_no']) ?>" required>
 
         <label>Floor</label>
         <select name="floor_id" required>
             <?php while ($f = $floors->fetch_assoc()) { ?>
-                <option value="<?php echo $f['floor_id']; ?>"
+                <option value="<?= $f['floor_id']; ?>"
                     <?php if ($f['floor_id'] == $room['floor_id']) echo "selected"; ?>>
-                    <?php echo $f['floor_name']; ?>
+                    <?= htmlspecialchars($f['floor_name']); ?>
                 </option>
             <?php } ?>
         </select>
 
         <label>Room Type</label>
-        <input type="text" name="room_type" value="<?php echo $room['room_type']; ?>" required>
+        <input type="text" name="room_type" value="<?= htmlspecialchars($room['room_type']) ?>" required>
+
+        <!-- 🔥 NEW FIELD -->
+        <label>Price / Day (₹)</label>
+        <input type="number" name="price_per_day" step="0.01"
+               value="<?= $room['price_per_day'] ?>" required>
 
         <label>Status</label>
         <select name="room_status">
-            <option value="Available" <?php if ($room['room_status']=="Available") echo "selected"; ?>>Available</option>
-            <option value="Booked" <?php if ($room['room_status']=="Booked") echo "selected"; ?>>Booked</option>
-            <option value="Maintenance" <?php if ($room['room_status']=="Maintenance") echo "selected"; ?>>Maintenance</option>
+            <option value="Available" <?= $room['room_status']=="Available" ? "selected" : "" ?>>Available</option>
+            <option value="Booked" <?= $room['room_status']=="Booked" ? "selected" : "" ?>>Booked</option>
+            <option value="Maintenance" <?= $room['room_status']=="Maintenance" ? "selected" : "" ?>>Maintenance</option>
         </select>
 
         <button type="submit" name="submit">Update Room</button>
 
     </form>
+
+    <button onclick="window.location.href='../dashboard.php'" class="btn back-btn"> Back</button>
 </div>
 
 </body>

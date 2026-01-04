@@ -1,0 +1,115 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== PAGE BACKGROUND ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+
+    background: url('../../assets/images/db_bg2.png') no-repeat center center / cover;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    max-width: 600px;
+    margin: 90px auto 60px;   /* navbar gap */
+    padding: 35px;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+
+    color: #f5f5f5;
+    text-align: center;
+}
+
+/* ===== TITLE ===== */
+.container h2 {
+    font-size: 26px;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* ===== ROOM DETAILS CARD ===== */
+.room-details-card {
+    background: rgba(255,255,255,0.08);
+    padding: 28px;
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* ===== TEXT ===== */
+.room-details-card p {
+    font-size: 15px;
+    margin: 14px 0;
+    line-height: 1.6;
+}
+
+/* ===== STATUS ===== */
+.status {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.available {
+    background: rgba(46, 204, 113, 0.9);
+    color: #fff;
+}
+
+.booked {
+    background: rgba(231, 76, 60, 0.9);
+    color: #fff;
+}
+
+/* ===== BOOK BUTTON ===== */
+.book-btn {
+    display: inline-block;
+    margin-top: 22px;
+
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: #fff;
+
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.book-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ===== BOOKED TEXT ===== */
+.booked-text {
+    margin-top: 20px;
+    color: #ff7675;
+    font-weight: bold;
+}
+
+/* ========== HEADER ========== */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.page-header .btn {
+    padding: 5px 10px;
+    font-size: 12px;
+}

@@ -37,7 +37,7 @@ $display_name = isset($admin['name']) ? $admin['name'] : 'Admin';
         <a href="dashboard.php">SDET Hotel</a>
     </div>
     <ul class="nav-menu">
-        <li><a href="admin_profile.php">Profile</a></li>
+        
         <li> <a href="/Hotel_Management_System/auth/logout.php" class="logout-btn">Logout</a></li>
     </ul>
 </nav>

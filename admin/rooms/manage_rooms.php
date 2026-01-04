@@ -12,21 +12,35 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Fetch rooms with floor info
-$rooms = $conn->query("SELECT r.*, f.floor_name FROM rooms r JOIN floors f ON r.floor_id=f.floor_id ORDER BY r.room_no ASC");
+// Fetch rooms with floor info + price
+$rooms = $conn->query("
+    SELECT 
+        r.room_id,
+        r.room_no,
+        r.room_type,
+        r.room_status,
+        r.price_per_day,
+        f.floor_name
+    FROM rooms r
+    JOIN floors f ON r.floor_id = f.floor_id
+    ORDER BY r.room_no ASC
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Manage Rooms</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../rooms/manage_rooms.css">
     <link rel="stylesheet" href="../includes/navbar_admin.css">
 </head>
 <body>
+
 <?php include __DIR__ . '/../includes/navbar_admin.php'; ?>
 
 <div class="container">
@@ -48,10 +62,12 @@ $rooms = $conn->query("SELECT r.*, f.floor_name FROM rooms r JOIN floors f ON r.
                 <th>Room No</th>
                 <th>Floor</th>
                 <th>Type</th>
+                <th>Price / Day (₹)</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
         <?php while($row = $rooms->fetch_assoc()): ?>
             <tr>
@@ -59,23 +75,31 @@ $rooms = $conn->query("SELECT r.*, f.floor_name FROM rooms r JOIN floors f ON r.
                 <td><?= htmlspecialchars($row['room_no']) ?></td>
                 <td><?= htmlspecialchars($row['floor_name']) ?></td>
                 <td><?= htmlspecialchars($row['room_type']) ?></td>
-                <td><?= htmlspecialchars($row['room_status']) ?></td>
-                <td class="actions">
-    <a href="edit_room.php?id=<?= $row['room_id'] ?>" 
-       class="action-btn edit" title="Edit">
-        <i class="fas fa-edit"></i>
-    </a>
 
-    <a href="manage_rooms.php?delete=<?= $row['room_id'] ?>" 
-       class="action-btn delete"
-       title="Delete"
-       onclick="return confirm('Are you sure?')">
-        <i class="fas fa-trash-alt"></i>
-    </a>
-</td>
+                <td>
+                    ₹<?= number_format($row['price_per_day'], 2) ?>
+                </td>
+
+                <td><?= htmlspecialchars($row['room_status']) ?></td>
+
+                <td class="actions">
+                    <a href="edit_room.php?id=<?= $row['room_id'] ?>" 
+                       class="action-btn edit" title="Edit Room">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a href="manage_rooms.php?delete=<?= $row['room_id'] ?>" 
+                       class="action-btn delete"
+                       title="Delete Room"
+                       onclick="return confirm('Are you sure you want to delete this room?')">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
         <?php endwhile; ?>
         </tbody>
     </table>
 </div>
+
 </body>
 </html>

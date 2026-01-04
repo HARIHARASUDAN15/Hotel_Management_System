@@ -8,27 +8,27 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 
+// Correct SQL query matching standard column names
 $sql = "
 SELECT 
     b.id,
     b.check_in,
     b.check_out,
-    b.total_amount,
-    b.booking_status,
+    b.status AS booking_status,
     b.created_at,
     u.name AS user_name,
     r.room_no AS room_number,
     r.room_type,
     r.room_status
-FROM bookings b
-JOIN users u ON b.user_id = u.id
-JOIN rooms r ON b.room_id = r.room_id
+FROM bookings AS b
+INNER JOIN users AS u ON b.user_id = u.id
+INNER JOIN rooms AS r ON b.room_id = r.room_id
 ORDER BY b.created_at DESC
 ";
 
 $result = $conn->query($sql);
 
-
+// Debug SQL error
 if (!$result) {
     die("SQL Error: " . $conn->error);
 }
@@ -58,8 +58,8 @@ if (!$result) {
     <?php while ($row = $result->fetch_assoc()) { ?>
     <tr>
         <td><?= $row['id'] ?></td>
-        <td><?= $row['user_name'] ?></td>
-        <td><?= $row['room_number'] ?></td>
+        <td><?= htmlspecialchars($row['user_name']) ?></td>
+        <td><?= htmlspecialchars($row['room_number']) ?></td>
         <td><?= $row['check_in'] ?></td>
         <td><?= $row['check_out'] ?></td>
         <td>₹<?= $row['total_amount'] ?></td>

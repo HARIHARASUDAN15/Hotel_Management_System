@@ -34,6 +34,12 @@ $username = $_SESSION['name'] ?? 'Guest';
     <div class="cards">
 
         <div class="card">
+            <h3>Profile</h3>
+            <p>Add your profile information</p>
+            <a href="../user/profile.php">Add</a>
+        </div>
+
+        <div class="card">
             <h3>🏢 View Floors</h3>
             <p>Check available floors in hotel</p>
             <a href="floors/floors.php">View</a>

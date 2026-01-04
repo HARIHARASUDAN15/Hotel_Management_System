@@ -15,27 +15,27 @@ body {
 }
 
 /* =========================
-   NAVBAR
+   NAVBAR (FIXED ALIGNMENT)
 ========================= */
 .navbar {
-    position: absolute;
+    position: fixed;              /* stays on top */
     top: 0;
+    left: 0;
     width: 100%;
-    padding: 20px 0;
-    z-index: 10;
-    background: linear-gradient(
-    rgba(74, 56, 35, 0.92),   /* dark brown */
-    rgba(74, 56, 35, 0.92)
-);
-
+    height: 70px;                 /* fixed height */
+    background: rgba(74, 56, 35, 0.95);
+    z-index: 1000;
+    display: flex;
+    align-items: center;          /* vertical center */
 }
 
+/* Container */
 .nav-container {
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center;          /* perfect vertical alignment */
 }
 
 /* Logo */
@@ -45,7 +45,6 @@ body {
     font-weight: 600;
     letter-spacing: 2px;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 .logo a:hover {
@@ -56,7 +55,13 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;          /* important */
     gap: 22px;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a {
@@ -64,15 +69,15 @@ body {
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    transition: color 0.3s ease;
+    padding: 6px 0;
 }
 
-/* underline hover animation */
+/* underline hover */
 .nav-links a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -4px;
     width: 0;
     height: 2px;
     background: #f1c40f;
@@ -94,6 +99,7 @@ body {
     height: 100vh;
     background: url("../images/img1.jpg") no-repeat center/cover;
     position: relative;
+    padding-top: 70px;  /* to offset fixed navbar */
 }
 
 /* Dark overlay + center content */
@@ -250,5 +256,29 @@ footer {
         font-size: 16px;
         margin: 0 8px;
     }
+}
+
+/* ===== LOGOUT BUTTON (SMALLER & CENTERED) ===== */
+.nav-links a.logout-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+
+    display: inline-flex;      /* 🔥 FIX */
+    align-items: center;       /* 🔥 FIX */
+    justify-content: center;   /* 🔥 FIX */
+
+    line-height: 1;            /* 🔥 IMPORTANT */
+    height: auto;
+    margin-top: 0;
+}
+
+.nav-links a.logout-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-1px);
 }
 

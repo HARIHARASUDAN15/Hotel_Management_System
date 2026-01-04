@@ -1,45 +1,74 @@
+/* Reset box sizing (VERY IMPORTANT) */
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: #f4f6f9;
     font-family: Arial, sans-serif;
 }
 
+/* Container */
 .container {
-    width: 400px;
+    width: 420px;
     margin: 50px auto;
     background: #fff;
-    padding: 25px;
+    padding: 25px 28px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Title */
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     color: #2c3e50;
 }
 
+/* Labels */
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: 14px;
+    font-weight: 600;
+    color: #333;
 }
 
-input, select {
+/* Input & Select – PERFECT ALIGNMENT */
+input,
+select {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
+    height: 40px;              /* 🔥 SAME HEIGHT */
+    padding: 0 10px;
+    margin-top: 6px;
+    border-radius: 5px;
     border: 1px solid #ccc;
+    font-size: 14px;
+    background: #fff;
 }
 
+/* Fix select arrow alignment */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='%23333' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+/* Button */
 button {
-    margin-top: 15px;
+    margin-top: 20px;
     width: 100%;
-    padding: 10px;
+    height: 42px;              /* 🔥 SAME HEIGHT FEEL */
     background: #2c3e50;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 button:hover {
@@ -48,15 +77,17 @@ button:hover {
 
 /* Error / Notification message */
 .error-msg {
-    color: red;
+    color: #e74c3c;
     text-align: center;
     margin-bottom: 15px;
     font-weight: bold;
 }
 
+/* Back button */
 .back-btn {
-    display: inline-block;
-    margin-top: 20px;
+    display: block;
+    margin-top: 22px;
+    text-align: center;
     text-decoration: none;
     background: #2c3e50;
     color: #fff;
