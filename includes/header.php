@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../admin.css">
 </head>
-<body>
+<body>c
     <header style="background:#2c3e50;color:white;padding:15px;text-align:center;">
         <h1>Hotel Management - Admin Panel</h1>
         <nav>

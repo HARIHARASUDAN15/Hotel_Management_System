@@ -10,7 +10,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 /* Approve review */
 if (isset($_GET['approve'])) {
-    $id = (int)$_GET['approve'];
+    $id = (int) $_GET['approve'];
     $conn->query("UPDATE reviews SET status='Approved' WHERE review_id=$id");
     header("Location: manage_reviews.php");
     exit;
@@ -18,7 +18,7 @@ if (isset($_GET['approve'])) {
 
 /* Reject review */
 if (isset($_GET['reject'])) {
-    $id = (int)$_GET['reject'];
+    $id = (int) $_GET['reject'];
     $conn->query("UPDATE reviews SET status='Rejected' WHERE review_id=$id");
     header("Location: manage_reviews.php");
     exit;
@@ -43,8 +43,8 @@ $result = $conn->query($sql);
 if (!$result) {
     die('SQL Error: ' . $conn->error);
 }
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,13 +70,20 @@ if (!$result) {
         <tr>
             <td><?= htmlspecialchars($row['guest_name']) ?></td>
             <td><?= htmlspecialchars($row['guest_email']) ?></td>
-            <td><?= $row['rating'] ?>/5</td>
+            <td><?= (int)$row['rating'] ?>/5</td>
             <td><?= htmlspecialchars($row['review_message']) ?></td>
             <td class="<?= strtolower($row['status']) ?>">
                 <?= $row['status'] ?>
             </td>
             <td>
-                <?php if ($row['status'] == 'Pending') { ?>
+                <?php
+                /* ⭐ CORE LOGIC ⭐
+                   Show Approve/Reject ONLY if:
+                   - rating <= 2
+                   - status is Pending
+                */
+                if ($row['rating'] <= 2 && $row['status'] === 'Pending') {
+                ?>
                     <a class="approve" href="?approve=<?= $row['review_id'] ?>">Approve</a>
                     <a class="reject" href="?reject=<?= $row['review_id'] ?>">Reject</a>
                 <?php } else { ?>
@@ -87,7 +94,7 @@ if (!$result) {
         <?php } ?>
     </table>
 
-    <a href="../dashboard.php" class="back">← Back </a>
+    <a href="../dashboard.php" class="back">← Back</a>
 </div>
 
 </body>

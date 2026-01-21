@@ -9,7 +9,7 @@
 /* ===== Body & Background ===== */
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: rgba(74, 56, 35, 0.95);
     color: #fff;
     display: flex;
     flex-direction: column;

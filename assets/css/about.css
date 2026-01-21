@@ -8,10 +8,15 @@
 
 /* ===== Body & Background ===== */
 body {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(
+        to bottom right,
+        rgba(74,56,35,0.7),
+        rgba(74,56,35,0.95)
+    );
     color: #fff;
     min-height: 100vh;
 }
+
 
 /* ===== Navbar ===== */
 .navbar {
@@ -175,5 +180,122 @@ footer {
         flex-direction: column;
         gap: 10px;
         align-items: center;
+    }
+}
+
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Body & Background ===== */
+body {
+    min-height: 100vh;
+    background: rgba(74, 56, 35, 0.95);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Main Section Container ===== */
+.section {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Section Heading */
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #ffd369;
+    text-shadow: 1px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Services Grid */
+.section-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* center horizontally */
+    gap: 30px;
+}
+
+/* Individual Service Box */
+.section-services p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-services p:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Icon Style */
+.section-services p i {
+    font-size: 28px;
+    color: #ffd369;
+}
+
+/* ===== Footer ===== */
+footer {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .section h2 {
+        font-size: 30px;
+    }
+
+    .section-services p {
+        width: 45%;
+        font-size: 16px;
+    }
+
+    .section-services p i {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section h2 {
+        font-size: 26px;
+    }
+
+    .section-services {
+        gap: 15px;
+    }
+
+    .section-services p {
+        width: 100%;
+        font-size: 15px;
+        padding: 15px 20px;
+    }
+
+    .section-services p i {
+        font-size: 20px;
     }
 }

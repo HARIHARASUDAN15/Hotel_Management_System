@@ -46,12 +46,6 @@ $username = $_SESSION['name'] ?? 'Guest';
         </div>
 
         <div class="card">
-            <h3>🛏️ Rooms</h3>
-            <p>View rooms & details</p>
-            <a href="rooms/rooms.php">View</a>
-        </div>
-
-        <div class="card">
             <h3>📅 My Bookings</h3>
             <p>Booking history & status</p>
             <a href="booking/booking_history.php">View</a>

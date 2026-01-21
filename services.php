@@ -8,7 +8,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | SDET Hotel</title>
-    <link rel="stylesheet" href="assets/css/services.css">
+    <link rel="stylesheet" href="../Hotel_Management_System/assets/css/about.css">
+    <link rel="stylesheet" href="../Hotel_Management_System/assets/css/common.css">
     <!-- Optional: FontAwesome for service icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>

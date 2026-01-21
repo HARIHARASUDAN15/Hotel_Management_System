@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | SDET Hotel</title>
     <link rel="stylesheet" href="../Hotel_Management_System/assets/css/about.css">
+    <link rel="stylesheet" href="../Hotel_Management_System/assets/css/common.css">
 </head>
 <body>
 

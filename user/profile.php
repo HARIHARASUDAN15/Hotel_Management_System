@@ -19,6 +19,7 @@ $user = $result->fetch_assoc();
     <title>My Profile</title>
     <link rel="stylesheet" href="../user/user.css">
     <link rel="stylesheet" href="../assets/css/common.css"> <!-- Navbar CSS -->
+    <link rel="stylesheet" href="/admin/floors/manage_floors.css"> <!-- Footer CSS -->
 </head>
 <body>
 
@@ -57,6 +58,9 @@ $user = $result->fetch_assoc();
                 </div>
             <?php endif; ?>
         </div>
+    </div>
+    <div class="buttons">
+        <button onclick="window.location.href='home.php'" class="btn back-btn">← Back</button>
     </div>
 </div>
 

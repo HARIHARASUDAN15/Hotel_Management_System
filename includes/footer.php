@@ -1,18 +1,23 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/common.css">
 <footer>
     <div class="footer-content">
-        <h3>SDET Hotel</h3>
+        <h3>Your Hotel Name</h3>
         <p>
-            Experience luxury and comfort at SDET Hotel. Our rooms are designed to provide ultimate relaxation with modern amenities, 
-            24/7 service, and exceptional hospitality. Located in the heart of the city, SDET Hotel ensures a memorable stay for both leisure and business travelers.
+            Experience comfort and luxury with our premium rooms and services.
+            Your satisfaction is our priority.
         </p>
-        <p>📍 123 Main Street, Kumbakonam</p>
-        <p>✉ Email: info@sdefhotel.com</p>
-        <p>📞 Phone: +91 98765 43210</p>
+
         <div class="footer-social">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
-        <p class="footer-copy">&copy; <?php echo date("Y"); ?> SDET Hotel. All Rights Reserved.</p>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-copy">
+            © <?php echo date('Y'); ?> Your Hotel Name. All Rights Reserved.
+        </div>
     </div>
 </footer>

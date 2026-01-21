@@ -29,9 +29,11 @@ $result = $conn->query($sql);
                     <h3><?php echo htmlspecialchars($row['floor_name']); ?></h3>
                     <p>Total Rooms: <?php echo $row['total_rooms']; ?></p>
 
-                    <a href="../rooms/rooms.php?floor_id=<?php echo $row['floor_id']; ?>">
-                        View Rooms
-                    </a>
+                    <a href="../rooms/rooms.php?floor_id=<?= $row['floor_id']; ?>" class="btn">
+                View Rooms
+            </a>
+            <div class="container">
+            <a href="../home.php" class="btn back-btn">← Back</a></div>
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
